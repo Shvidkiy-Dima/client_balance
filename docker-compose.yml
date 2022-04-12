@@ -1,0 +1,27 @@
+version: '3.5'
+
+services:
+
+  flask_server:
+    build:
+      context: .
+      dockerfile: compose/flask/Dockerfile
+    image: flask_server
+    depends_on:
+        - db
+    restart: always
+    ports:
+      - "8000:8000"
+    env_file:
+      - envs/server
+      - envs/db
+    volumes:
+      - ./logs:/app/logs
+  db:
+    hostname: db
+    image: kartoza/postgis
+    restart: always
+    volumes:
+      - ./postgres-data:/var/lib/postgresql
+    env_file:
+      - envs/db

@@ -1,0 +1,3 @@
+POSTGRES_DB=flask_server
+POSTGRES_USER=admin
+POSTGRES_PASS=admin
